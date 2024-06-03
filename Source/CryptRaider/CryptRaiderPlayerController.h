@@ -18,7 +18,7 @@ class CRYPTRAIDER_API ACryptRaiderPlayerController : public APlayerController
 	
 protected:
 
-	/** Input Mapping Context to be used for player input */
+	/** Input Mapping Context to be used for player input  */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputMappingContext* InputMappingContext;
 
