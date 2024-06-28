@@ -3,6 +3,8 @@
 
 #include "GrabberComponent.h"
 
+#include "DrawDebugHelpers.h"
+
 // Sets default values for this component's properties
 UGrabberComponent::UGrabberComponent()
 {
@@ -27,17 +29,35 @@ void UGrabberComponent::BeginPlay()
 // Called every frame
 void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	FRotator GrabberRotation = GetComponentRotation();
-	FString RotationString = GrabberRotation.ToCompactString();
+	// Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	// FRotator GrabberRotation = GetComponentRotation();
+	// FString RotationString = GrabberRotation.ToCompactString();
 
-	UE_LOG(LogTemp, Log, TEXT("Grabber Rotation: %s"), *RotationString);
+	// UE_LOG(LogTemp, Log, TEXT("Grabber Rotation: %s"), *RotationString);
 
-	UWorld*	world = GetWorld();
+	// UWorld*	world = GetWorld();
 
-	double timeElapsed = world->GetTimeSeconds();
+	// double timeElapsed = world->GetTimeSeconds();
 
-	UE_LOG(LogTemp, Log, TEXT("Time Elasped: %f "), timeElapsed);
+	// UE_LOG(LogTemp, Log, TEXT("Time Elasped: %f "), timeElapsed);
+
+	FVector StartLocation = GetComponentLocation() + GetForwardVector();
+	FVector Direction = GetForwardVector();
+
+	FVector EndLocation = (StartLocation + Direction) * MaxGrabDistance; 
+
+	//TODO: FCOLOR TO Obsidian
+	//todo: getforwardvector
+	//Start == the location of the grabber
+	
+
+	//End == the Start + maxgrabdistance
+	
+	
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red );
+
+
+
 
 
 	// ...
