@@ -22,7 +22,21 @@ protected:
 
 public:	
 	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+    virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-		
+    void NewFunction(float DeltaTime);
+
+private:
+    UPROPERTY(EditAnywhere)
+    FVector MoveOffSet;
+
+    UPROPERTY(EditAnywhere)
+    float MoveTime = 4;
+
+    UPROPERTY(EditAnywhere)
+    bool ShouldMove = false;
+
+    UPROPERTY(EditAnywhere)
+	FVector StartLocation;
+
 };
