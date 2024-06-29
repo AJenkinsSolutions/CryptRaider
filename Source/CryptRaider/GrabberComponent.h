@@ -30,5 +30,11 @@ private:
 	float MaxGrabDistance = 40;
 
 
+	UPROPERTY(EditAnywhere)
+	float SphereRadius = 100; 
+
+
+
+
 		
 };

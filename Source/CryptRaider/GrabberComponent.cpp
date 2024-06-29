@@ -29,9 +29,9 @@ void UGrabberComponent::BeginPlay()
 // Called every frame
 void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	// Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	// FRotator GrabberRotation = GetComponentRotation();
-	// FString RotationString = GrabberRotation.ToCompactString();
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	FRotator GrabberRotation = GetComponentRotation();
+	FString RotationString = GrabberRotation.ToCompactString();
 
 	// UE_LOG(LogTemp, Log, TEXT("Grabber Rotation: %s"), *RotationString);
 
@@ -45,23 +45,44 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	FVector Direction = GetForwardVector();
 
 	FVector EndLocation = (StartLocation + Direction) * MaxGrabDistance; 
-
-	//TODO: FCOLOR TO Obsidian
-	//todo: getforwardvector
-	//Start == the location of the grabber
 	
-
-	//End == the Start + maxgrabdistance
-	
+	int32 segments = 12;
 	
 	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red );
+	DrawDebugSphere(GetWorld(), StartLocation, SphereRadius, segments, FColor::Blue);
+	 
+
+	FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(SphereRadius);
+	FHitResult HitResult;
+	bool HasHit = GetWorld()->SweepSingleByChannel(
+		HitResult,
+		StartLocation,
+		EndLocation,
+		FQuat::Identity,
+		ECC_GameTraceChannel2,
+		CollisionSphere
+	);
+
+	if(HasHit){
+
+		AActor* HitActor = HitResult.GetActor();
+		// FString ActorName = Actor->GetActorNameOrLabel();
+		UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), *HitActor->GetActorNameOrLabel());
 
 
-	float Damage = 0; 
+	}else{
+		UE_LOG(LogTemp, Display, TEXT("No Actor Hit"));
+	}
+
+
+
+
+
+	// float Damage = 0; 
 	//Setting up reference to the damage variable
-	float& DamageRef = Damage;
+	// float& DamageRef = Damage;
 	//can be used jsut like a reglar variable
-	UE_LOG(LogTemp, Display, TEXT("Damage %f"), DamageRef);
+	// UE_LOG(LogTemp, Display, TEXT("Damage %f"), DamageRef);
 
 
 
