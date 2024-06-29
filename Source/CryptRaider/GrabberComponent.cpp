@@ -57,6 +57,14 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red );
 
 
+	float Damage = 0; 
+	//Setting up reference to the damage variable
+	float& DamageRef = Damage;
+	//can be used jsut like a reglar variable
+	UE_LOG(LogTemp, Display, TEXT("Damage %f"), DamageRef);
+
+
+
 
 
 
