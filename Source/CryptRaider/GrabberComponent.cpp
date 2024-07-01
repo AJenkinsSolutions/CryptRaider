@@ -41,6 +41,23 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 	// UE_LOG(LogTemp, Log, TEXT("Time Elasped: %f "), timeElapsed);
 
+	
+	// float Damage = 0; 
+	//Setting up reference to the damage variable
+	// float& DamageRef = Damage;
+	//can be used jsut like a reglar variable
+	// UE_LOG(LogTemp, Display, TEXT("Damage %f"), DamageRef);
+
+
+}
+
+void UGrabberComponent::Release(){
+
+	UE_LOG(LogTemp, Log, TEXT("Entered into Release Function in C++"));
+}
+
+void UGrabberComponent::Grab(){
+
 	FVector StartLocation = GetComponentLocation() + GetForwardVector();
 	FVector Direction = GetForwardVector();
 
@@ -76,19 +93,6 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 
 
-
-
-	// float Damage = 0; 
-	//Setting up reference to the damage variable
-	// float& DamageRef = Damage;
-	//can be used jsut like a reglar variable
-	// UE_LOG(LogTemp, Display, TEXT("Damage %f"), DamageRef);
-
-
-
-
-
-
-	// ...
 }
+
 
