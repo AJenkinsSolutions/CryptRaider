@@ -71,19 +71,20 @@ void UGrabberComponent::Release(){
 
 void UGrabberComponent::Grab(){
 
-	FVector StartLocation = GetComponentLocation() + GetForwardVector();
+	FVector StartLocation = GetComponentLocation();
 	FVector Direction = GetForwardVector();
-
-	FVector EndLocation = (StartLocation + Direction) * MaxGrabDistance; 
+	FVector EndLocation = StartLocation + (Direction * MaxGrabDistance); 
 	
-	int32 segments = 12;
 	
-	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red );
-	DrawDebugSphere(GetWorld(), StartLocation, SphereRadius, segments, FColor::Blue);
-	 
-
+	
+	//DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true);
+	// DrawDebugSphere(GetWorld(), EndLocation, SphereRadius, 100, FColor::Blue, false, 3);
+	
+	//Collison Shape for our geomatry sweep
 	FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(SphereRadius);
+	
 	FHitResult HitResult;
+
 	bool HasHit = GetWorld()->SweepSingleByChannel(
 		HitResult,
 		StartLocation,
@@ -93,8 +94,11 @@ void UGrabberComponent::Grab(){
 		CollisionSphere
 	);
 
-	if(HasHit){
+	
+	// DrawDebugSphere(GetWorld(), HitResult.Location, 20, 100, FColor::Green, false, 3);
 
+	if(HasHit){
+		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10, 10, FColor::Blue, false, 3);
 		AActor* HitActor = HitResult.GetActor();
 		// FString ActorName = Actor->GetActorNameOrLabel();
 		UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), *HitActor->GetActorNameOrLabel());
