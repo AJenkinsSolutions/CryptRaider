@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+
 #include "GrabberComponent.generated.h"
+
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -30,7 +34,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Grab();
 
-
+	
 private: 
 
 	UPROPERTY(EditAnywhere)
@@ -40,7 +44,12 @@ private:
 	UPROPERTY(EditAnywhere)
 	float SphereRadius = 100; 
 
+	UPROPERTY(EditAnywhere)
+	float HoldDistance = 200;
 
+	
+	UFUNCTION(BlueprintCallable)
+	UPhysicsHandleComponent* GetPhysicsHandler() const;
 
 
 		
