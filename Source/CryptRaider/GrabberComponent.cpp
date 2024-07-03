@@ -44,14 +44,17 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UGrabberComponent::Release(){
 
-	
+	UPhysicsHandleComponent* PhysicsHandle = GetPhysicsHandler();
 
-	if(GetPhysicsHandler() == nullptr){
+	if(PhysicsHandle == nullptr){
 		return;
 	}
+	UPrimitiveComponent* GrabbedComponent = PhysicsHandle->GetGrabbedComponent();
+	if(GrabbedComponent != nullptr){
+		
+		GrabbedComponent->WakeAllRigidBodies();
+		PhysicsHandle->ReleaseComponent();
 
-	if(GetPhysicsHandler()->GetGrabbedComponent()){
-		GetPhysicsHandler()->ReleaseComponent();
 	}
 
 
