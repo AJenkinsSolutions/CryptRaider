@@ -44,14 +44,24 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 
 void UGrabberComponent::Release(){
 
-	UE_LOG(LogTemp, Log, TEXT("Entered into Release Function in C++"));
+	
+
+	if(GetPhysicsHandler() == nullptr){
+		return;
+	}
+
+	if(GetPhysicsHandler()->GetGrabbedComponent()){
+		GetPhysicsHandler()->ReleaseComponent();
+	}
+
+
 }
 
 void UGrabberComponent::Grab(){
 
 
 	UPhysicsHandleComponent* PhysicsHandler = GetPhysicsHandler();
-	if(PhysicsHandler == nullptr){
+	if(PhysicsHandler == nullptr){ 
 		return;
 	}
 
@@ -75,28 +85,32 @@ void UGrabberComponent::Grab(){
 		ECC_GameTraceChannel2,
 		CollisionSphere
 	);
+	// HitResult Variables
+	UPrimitiveComponent* HitComponent = HitResult.GetComponent();
+	FVector HitImpactPoint = HitResult.ImpactPoint;
+
 
 	if(HasHit){
-		// Logging
 		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10, 10, FColor::Blue, false, 3);
 		// UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), HitResult.GetActor()->GetActorNameOrLabel());
+		
+		//Wake Rigid Bodies before connecting Primative Component to Handle
+		HitComponent->WakeAllRigidBodies();
 		//Handle Physics
-
 		PhysicsHandler->GrabComponentAtLocationWithRotation(
-
-			HitResult.GetComponent(),
+			HitComponent,
 			NAME_None,
-			HitResult.ImpactPoint,
+			HitImpactPoint,
 			GetComponentRotation()
 			);
+		
 
 	}else{
 		UE_LOG(LogTemp, Display, TEXT("No Hit"));
 	}
 
 	
-
-	//PhysicsHandlerComponent->GrabComponent(HitResult.GetComponent(), NAME_None, HitResult.ImpactPoint, HitResult.GetComponent()->GetComponentQuat())
+	
 }
 //const means it doesnt change anything in our grabber
 UPhysicsHandleComponent* UGrabberComponent::GetPhysicsHandler() const{
