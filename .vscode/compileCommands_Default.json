@@ -150,5 +150,21 @@
 			"@C:\\Users\\ajenk\\Documents\\UnrealProjects\\CryptRaider\\CryptRaider\\.vscode\\compileCommands_Default\\CryptRaider.1.rsp"
 		],
 		"directory": "G:\\EpicGamesLibary\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ajenk\\Documents\\UnrealProjects\\CryptRaider\\CryptRaider\\Source\\CryptRaider\\TriggerZoneComponent.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ajenk\\Documents\\UnrealProjects\\CryptRaider\\CryptRaider\\.vscode\\compileCommands_Default\\CryptRaider.1.rsp"
+		],
+		"directory": "G:\\EpicGamesLibary\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ajenk\\Documents\\UnrealProjects\\CryptRaider\\CryptRaider\\Source\\CryptRaider\\TriggerZoneComponent.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\ajenk\\Documents\\UnrealProjects\\CryptRaider\\CryptRaider\\.vscode\\compileCommands_Default\\CryptRaider.1.rsp"
+		],
+		"directory": "G:\\EpicGamesLibary\\UE_5.4\\Engine\\Source"
 	}
 ]

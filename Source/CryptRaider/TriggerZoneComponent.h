@@ -9,9 +9,17 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CRYPTRAIDER_API UTriggerZoneComponent : public UBoxComponent
 {
 	GENERATED_BODY()
+
+
+
+protected: 
+	virtual void BeginPlay() override;
+
+
+
 	
 };
