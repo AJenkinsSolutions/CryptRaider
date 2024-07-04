@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "DrawDebugHelpers.h"
 
 #include "GrabberComponent.generated.h"
 
@@ -50,6 +51,9 @@ private:
 	
 	UFUNCTION(BlueprintCallable)
 	UPhysicsHandleComponent* GetPhysicsHandler() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsGrabberInReach(FHitResult& OutHitResult) const;
 
 
 		

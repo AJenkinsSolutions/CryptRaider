@@ -3,7 +3,7 @@
 
 #include "GrabberComponent.h"
 
-#include "DrawDebugHelpers.h"
+
 
 
 
@@ -73,33 +73,16 @@ void UGrabberComponent::Grab(){
 		return;
 	}
 
+	FHitResult OutHitResult;
+	bool HasHit = IsGrabberInReach(OutHitResult);
 
-	// GEOMATERY SWEEP
-	// Vectors - Line
-	FVector StartLocation = GetComponentLocation();
-	FVector Direction = GetForwardVector();
-	FVector EndLocation = StartLocation + (Direction * MaxGrabDistance); 
-
-	//Collison Shape 
-	FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(SphereRadius);
+	UPrimitiveComponent* HitComponent = OutHitResult.GetComponent();
 	
-	//Out Result
-	FHitResult HitResult;
-	bool HasHit = GetWorld()->SweepSingleByChannel(
-		HitResult,
-		StartLocation,
-		EndLocation,
-		FQuat::Identity,
-		ECC_GameTraceChannel2,
-		CollisionSphere
-	);
-	// HitResult Variables
-	UPrimitiveComponent* HitComponent = HitResult.GetComponent();
-	FVector HitImpactPoint = HitResult.ImpactPoint;
+	FVector HitImpactPoint = OutHitResult.ImpactPoint;
 
 
 	if(HasHit){
-		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10, 10, FColor::Blue, false, 3);
+		DrawDebugSphere(GetWorld(), OutHitResult.ImpactPoint, 10, 10, FColor::Blue, false, 3);
 		// UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), HitResult.GetActor()->GetActorNameOrLabel());
 		
 		//Wake Rigid Bodies before connecting Primative Component to Handle
@@ -137,6 +120,41 @@ UPhysicsHandleComponent* UGrabberComponent::GetPhysicsHandler() const{
 	return result;
 	
 }
+
+
+bool UGrabberComponent::IsGrabberInReach(FHitResult &OutHitResult) const
+{
+	// GEOMATERY SWEEP
+	// Vectors - Line
+	FVector StartLocation = GetComponentLocation();
+	FVector Direction = GetForwardVector();
+	FVector EndLocation = StartLocation + (Direction * MaxGrabDistance); 
+
+	//Collison Shape 
+	FCollisionShape CollisionSphere = FCollisionShape::MakeSphere(SphereRadius);
+
+	
+	bool HasHit = GetWorld()->SweepSingleByChannel(
+		OutHitResult,
+		StartLocation,
+		EndLocation,
+		FQuat::Identity,
+		ECC_GameTraceChannel2,
+		CollisionSphere
+	);
+	
+	return HasHit;
+    
+}
+
+/**
+ * This function will handle the sweeping logic
+ * Outputs a HitResult obj 
+ * Returns a bool if sweep has hit a grabbable object
+*/
+
+
+
 
 
 
