@@ -29,17 +29,21 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
     TArray<AActor*> Actors;
     GetOverlappingActors(Actors);
 
-    // if(Actors.Num() > 0){
-        
-    //     UE_LOG(LogTemp, Log, TEXT("Overlapping actor %s"), *Actors[0]->GetActorNameOrLabel());
-    // }
 
    for(AActor* Actor: Actors){
 
-    UE_LOG(LogTemp, Log, TEXT("Overlapping actor %s"), *Actor->GetActorNameOrLabel());
-   
+//    UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
+
+
+    if(Actor->ActorHasTag(AcceptableTag)){
+
+        UE_LOG(LogTemp, Log, TEXT("Unlocking"));
+    }
+
+
    }
-    
+
+   
 
     
 
