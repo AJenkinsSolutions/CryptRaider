@@ -30,9 +30,17 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
     AActor* ActorInZone = GetActorTag();
     
     if(ActorInZone != nullptr){
-
         
-        UE_LOG(LogTemp, Log, TEXT("Unlocking: Acceptable Actor in zone %s"), *ActorInZone->GetActorNameOrLabel());
+        //Casting
+        UPrimitiveComponent* ActorInZoneComponent = Cast<UPrimitiveComponent>(ActorInZone->GetRootComponent());
+
+        if(ActorInZoneComponent != nullptr){
+
+            
+            ActorInZoneComponent->SetSimulatePhysics(false);
+        }
+
+       // UE_LOG(LogTemp, Log, TEXT("Unlocking: Acceptable Actor in zone %s"), *ActorInZone->GetActorNameOrLabel());
         
         Mover->SetShouldMove(true);
 
