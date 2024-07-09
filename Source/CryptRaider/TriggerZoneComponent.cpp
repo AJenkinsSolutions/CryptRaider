@@ -3,6 +3,7 @@
 
 #include "TriggerZoneComponent.h"
 
+
 UTriggerZoneComponent::UTriggerZoneComponent()
 {
 
@@ -36,7 +37,16 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
         if(ActorInZoneComponent != nullptr){
 
+            FAttachmentTransformRules AttachRules(
+                EAttachmentRule::KeepRelative,
+                EAttachmentRule::KeepRelative,
+                EAttachmentRule::KeepRelative,
+                false
+            );
             
+            USceneComponent* ComponentToAttachTo = GetOwner()->GetRootComponent();
+
+            ActorInZone->AttachToComponent(ComponentToAttachTo, FAttachmentTransformRules::KeepWorldTransform);
             ActorInZoneComponent->SetSimulatePhysics(false);
         }
 
