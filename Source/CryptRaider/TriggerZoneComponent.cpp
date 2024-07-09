@@ -39,7 +39,7 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
     }else{
         UE_LOG(LogTemp, Log, TEXT("Relocking "));
 
-        // Mover->ShouldMove = false;
+        Mover->SetShouldMove(false);
     }
    
 
