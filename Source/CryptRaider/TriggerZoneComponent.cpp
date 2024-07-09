@@ -26,25 +26,40 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-    TArray<AActor*> Actors;
-    GetOverlappingActors(Actors);
+    AActor* ActorInZone = GetActorTag();
+    
+    if(ActorInZone != nullptr){
 
-
-   for(AActor* Actor: Actors){
-
-//    UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
-
-
-    if(Actor->ActorHasTag(AcceptableTag)){
-
-        UE_LOG(LogTemp, Log, TEXT("Unlocking"));
+        
+        UE_LOG(LogTemp, Log, TEXT("Unlocking: Acceptable Actor in zone %s"), *ActorInZone->GetActorNameOrLabel());
+    }else{
+        UE_LOG(LogTemp, Log, TEXT("Relocking "));
     }
-
-
-   }
-
    
 
     
+
+}
+
+
+AActor* UTriggerZoneComponent::GetActorTag() const {
+
+    AActor* ReturnActor = nullptr;
+
+    TArray<AActor*> Actors;
+    GetOverlappingActors(Actors);
+
+    for(AActor* Actor: Actors){
+
+    //      UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
+        if(Actor->ActorHasTag(AcceptableTag)){
+            
+            return Actor;
+        }
+
+    }
+
+    return ReturnActor;
+
 
 }

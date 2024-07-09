@@ -31,5 +31,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FName AcceptableTag; 
+
+	AActor* GetActorTag() const;
 	
 };
