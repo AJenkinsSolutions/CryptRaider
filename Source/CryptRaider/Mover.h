@@ -26,15 +26,14 @@ public:
 
     void NewFunction(float DeltaTime);
 
+    bool ShouldMove;
+
 private:
     UPROPERTY(EditAnywhere)
     FVector MoveOffSet;
 
     UPROPERTY(EditAnywhere)
     float MoveTime = 4;
-
-    UPROPERTY(EditAnywhere)
-    bool ShouldMove = false;
 
     UPROPERTY(EditAnywhere)
 	FVector StartLocation;

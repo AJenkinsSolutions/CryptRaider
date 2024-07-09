@@ -26,19 +26,30 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+    
     AActor* ActorInZone = GetActorTag();
     
     if(ActorInZone != nullptr){
 
         
         UE_LOG(LogTemp, Log, TEXT("Unlocking: Acceptable Actor in zone %s"), *ActorInZone->GetActorNameOrLabel());
+        
+        Mover->ShouldMove = true;
+
     }else{
         UE_LOG(LogTemp, Log, TEXT("Relocking "));
+
+        // Mover->ShouldMove = false;
     }
    
 
     
 
+}
+
+void UTriggerZoneComponent::SetMover(UMover* NewMover)
+{
+    Mover = NewMover;
 }
 
 

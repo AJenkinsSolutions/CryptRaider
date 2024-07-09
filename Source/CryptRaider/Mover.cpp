@@ -33,15 +33,7 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
-	// AActor* Owner = GetOwner();
-
-
-	// FVector OwnerLocation = Owner->GetActorLocation();
-
-	// FString OwnerLocationString = OwnerLocation.ToCompactString();
-
-
-	// UE_LOG(LogTemp, Log, TEXT("Owner Location: %sOwnerLocationString"), *OwnerLocationString);
+	
 	if(ShouldMove){
 
 		FVector Current = GetOwner()->GetActorLocation();
@@ -55,17 +47,6 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 
 	}
 	
-	// the memory address we want
-	//float MyFloat = 5; 
-	// the pointer to that memory address
-	//float* YourFloat = &MyFloat;
-	// * before the pointer 'dereferecing operator' gives us access to the value
-	//UE_LOG(LogTemp, Log, TEXT("YourFloat: %f"), *YourFloat);
-
-	//UE_LOG(LogTemp, Log, TEXT("Your message: %uOwner"), Owner);
-
 	
-	//UE_LOG(LogTemp, Display, TEXT("DEBUG MESSAGE"));
-	// ...
 }
 
