@@ -26,9 +26,13 @@ public:
 
     void NewFunction(float DeltaTime);
 
-    bool ShouldMove;
+    void SetShouldMove(bool ShouldMove);
+    
 
 private:
+
+    bool ShouldMove = false;
+
     UPROPERTY(EditAnywhere)
     FVector MoveOffSet;
 

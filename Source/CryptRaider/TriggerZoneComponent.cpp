@@ -34,7 +34,7 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
         
         UE_LOG(LogTemp, Log, TEXT("Unlocking: Acceptable Actor in zone %s"), *ActorInZone->GetActorNameOrLabel());
         
-        Mover->ShouldMove = true;
+        Mover->SetShouldMove(true);
 
     }else{
         UE_LOG(LogTemp, Log, TEXT("Relocking "));
