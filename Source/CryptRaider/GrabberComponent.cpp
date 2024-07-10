@@ -59,6 +59,7 @@ void UGrabberComponent::Release(){
 		
 		GrabbedComponent->WakeAllRigidBodies();
 		PhysicsHandle->ReleaseComponent();
+		GrabbedComponent->GetOwner()->Tags.Remove("Grabbed");
 
 	}
 
@@ -87,6 +88,9 @@ void UGrabberComponent::Grab(){
 		
 		//Wake Rigid Bodies before connecting Primative Component to Handle
 		HitComponent->WakeAllRigidBodies();
+		GetOwner()->Tags.Add("Grabbed");
+
+		OutHitResult.GetActor()->Tags.Add("Grabbed");
 		//Handle Physics
 		PhysicsHandler->GrabComponentAtLocationWithRotation(
 			HitComponent,

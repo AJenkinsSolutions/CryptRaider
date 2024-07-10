@@ -37,12 +37,6 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
         if(ActorInZoneComponent != nullptr){
 
-            FAttachmentTransformRules AttachRules(
-                EAttachmentRule::KeepRelative,
-                EAttachmentRule::KeepRelative,
-                EAttachmentRule::KeepRelative,
-                false
-            );
             
             USceneComponent* ComponentToAttachTo = GetOwner()->GetRootComponent();
 
