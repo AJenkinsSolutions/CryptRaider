@@ -84,7 +84,7 @@ void UGrabberComponent::Grab(){
 
 	if(HasHit){
 		DrawDebugSphere(GetWorld(), OutHitResult.ImpactPoint, 10, 10, FColor::Blue, false, 3);
-		// UE_LOG(LogTemp, Log, TEXT("Hit Actor: %s"), HitResult.GetActor()->GetActorNameOrLabel());
+		
 		
 		//Wake Rigid Bodies before connecting Primative Component to Handle
 		HitComponent->WakeAllRigidBodies();
