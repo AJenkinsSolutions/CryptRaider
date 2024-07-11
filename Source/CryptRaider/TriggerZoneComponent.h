@@ -23,20 +23,20 @@ protected:
 
 public:	
 	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+    virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-	UFUNCTION(BlueprintCallable)
-	void SetMover(UMover* Mover);
+    void AttachActorToComponent(AActor *ActorInZone);
 
+    UFUNCTION(BlueprintCallable)
+    void SetMover(UMover *Mover);
 
 private:
+    UPROPERTY(EditAnywhere)
+    FName AcceptableTag;
 
-	UPROPERTY(EditAnywhere)
-	FName AcceptableTag; 
+    UPROPERTY(EditAnywhere)
+    UMover *Mover;
 
-	UPROPERTY(EditAnywhere)
-	UMover* Mover;
-
-	AActor* GetActorTag() const;
+    AActor* ConfirmActorAcceptableTag() const;
 	
 };
