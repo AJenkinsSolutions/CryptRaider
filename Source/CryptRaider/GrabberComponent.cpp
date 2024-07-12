@@ -32,12 +32,10 @@ void UGrabberComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	UPhysicsHandleComponent* PhysicsHandler = GetPhysicsHandler();
-	if(PhysicsHandler == nullptr){
-		return;
-	}
+	
 
 	//Set Physic Handler location on tick if somethins is grabbed
-	if (PhysicsHandler->GetGrabbedComponent() != nullptr)
+	if (PhysicsHandler && PhysicsHandler && PhysicsHandler->GetGrabbedComponent())
 	{
 		FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
 		PhysicsHandler->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
@@ -53,13 +51,9 @@ void UGrabberComponent::Release(){
 
 	if(PhysicsHandle && PhysicsHandle->GetGrabbedComponent()){
 		
-		PhysicsHandle->GetGrabbedComponent()->WakeAllRigidBodies();
+		PhysicsHandle->GetGrabbedComponent()->GetOwner()->Tags.Remove("Grabbed");
 		PhysicsHandle->ReleaseComponent();
 
-		PhysicsHandle->GetGrabbedComponent()->GetOwner()->Tags.Remove("Grabbed");
-
-	}else{
-		return;
 	}
 
 
@@ -90,6 +84,18 @@ void UGrabberComponent::Grab(){
 		GetOwner()->Tags.Add("Grabbed");
 
 		OutHitResult.GetActor()->Tags.Add("Grabbed");
+
+		//Check if the root component is a UPRIMATIVE
+		//SET SIMULATE PHYSICS
+		//Checks if root component is a UPrimativeComponet or subclass of Uprim
+		if(dynamic_cast<UPrimitiveComponent*>(OutHitResult.GetActor()->GetRootComponent())){
+			
+			UPrimitiveComponent* rootComponent = Cast<UPrimitiveComponent>(OutHitResult.GetActor()->GetRootComponent());
+		
+			rootComponent->SetSimulatePhysics(true);
+		}
+ 		
+	
 		//Handle Physics
 		PhysicsHandler->GrabComponentAtLocationWithRotation(
 			HitComponent,

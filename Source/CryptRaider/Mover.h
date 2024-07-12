@@ -26,11 +26,13 @@ public:
 
     void NewFunction(float DeltaTime);
 
+    UFUNCTION(BlueprintCallable)
     void SetShouldMove(bool ShouldMove);
     
 
 private:
 
+    
     bool ShouldMove = false;
 
     UPROPERTY(EditAnywhere)
@@ -41,5 +43,9 @@ private:
 
     UPROPERTY(EditAnywhere)
 	FVector StartLocation;
+
+    
+
+
 
 };
