@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
 #include "Mover.h"
+// #include <string>
 #include "TriggerZoneComponent.generated.h"
 
 /**
@@ -31,8 +32,8 @@ public:
     void SetMover(UMover *Mover);
 
 private:
-    UPROPERTY(EditAnywhere)
-    FName AcceptableTag;
+    
+    // string AcceptableTag = "Unlock1";
 
     UPROPERTY(EditAnywhere)
     UMover *Mover;
