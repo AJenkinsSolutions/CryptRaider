@@ -39,7 +39,7 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
     
     }else{
-        UE_LOG(LogTemp, Log, TEXT("Relocking"));
+        UE_LOG(LogTemp, Log, TEXT("Relocking "));
 
         Mover->SetShouldMove(false);
     }
@@ -79,7 +79,7 @@ AActor* UTriggerZoneComponent::ConfirmActorAcceptableTag() const {
     for(AActor* Actor: Actors){
 
     //      UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
-        if(Actor->ActorHasTag("Unlock1") && !Actor->ActorHasTag("Grabbed")){
+        if(Actor->ActorHasTag(AcceptableTag) && !Actor->ActorHasTag("Grabbed")){
             
             return Actor;
         }

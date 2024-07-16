@@ -11,14 +11,7 @@
 	],
 	"settings": {
 		"typescript.tsc.autoDetect": "off",
-		"npm.autoDetect": "off",
-		"files.associations": {
-			"filesystem": "cpp",
-			"format": "cpp",
-			"xstring": "cpp",
-			"string": "cpp",
-			"iosfwd": "cpp"
-		}
+		"npm.autoDetect": "off"
 	},
 	"extensions": {
 		"recommendations": [
