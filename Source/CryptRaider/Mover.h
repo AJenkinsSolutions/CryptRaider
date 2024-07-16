@@ -29,11 +29,13 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetShouldMove(bool ShouldMove);
     
+    
+    
 
 private:
 
-    
     bool ShouldMove = false;
+    
 
     UPROPERTY(EditAnywhere)
     FVector MoveOffSet;

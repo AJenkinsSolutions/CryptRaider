@@ -44,14 +44,15 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 
 		GetOwner()->SetActorLocation(NewLocation);
 
-
+		UE_LOG(LogTemp, Log, TEXT("In should move"));
 	}
 	
 	
 }
 
 void UMover::SetShouldMove(bool AllowMovement){
-
+	//Why isnt the mover moving
+	//We use the movers own method to turn on the private var 
 	ShouldMove = AllowMovement;
 }
 

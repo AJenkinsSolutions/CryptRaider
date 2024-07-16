@@ -31,22 +31,24 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
     AActor* ActorInZone = ConfirmActorAcceptableTag();
     
     if(ActorInZone != nullptr){
-
+        UE_LOG(LogTemp, Log, TEXT("locking"));
         AttachActorToComponent(ActorInZone);
-
+        //taking the mover co
         //Move Door
         Mover->SetShouldMove(true);
 
     
     }else{
-        UE_LOG(LogTemp, Log, TEXT("Relocking "));
+        UE_LOG(LogTemp, Log, TEXT("Relocking"));
 
         Mover->SetShouldMove(false);
     }
+
 }
 
 void UTriggerZoneComponent::AttachActorToComponent(AActor *ActorInZone)
 {
+    UE_LOG(LogTemp, Log, TEXT(" Entered to AttachActorToComponent"));
     // Casting
     UPrimitiveComponent *ActorInZoneComponent = Cast<UPrimitiveComponent>(ActorInZone->GetRootComponent());
 
@@ -63,6 +65,8 @@ void UTriggerZoneComponent::AttachActorToComponent(AActor *ActorInZone)
    
 }
 
+//Not being used in the c ++ 
+// Will be used in blueprint for the metal statue
 void UTriggerZoneComponent::SetMover(UMover* NewMover)
 {
     Mover = NewMover;
@@ -75,12 +79,15 @@ AActor* UTriggerZoneComponent::ConfirmActorAcceptableTag() const {
 
     TArray<AActor*> Actors;
     GetOverlappingActors(Actors);
+    UE_LOG(LogTemp, Log, TEXT("Entered into ConfirmAcceptable Tag"));
 
     for(AActor* Actor: Actors){
 
-    //      UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
+    //UE_LOG(LogTemp, Log, TEXT("Overlapping Actor %s"), *Actor->GetActorNameOrLabel());
         if(Actor->ActorHasTag(AcceptableTag) && !Actor->ActorHasTag("Grabbed")){
             
+            UE_LOG(LogTemp, Log,  TEXT("Tag confirmed"));
+
             return Actor;
         }
 
