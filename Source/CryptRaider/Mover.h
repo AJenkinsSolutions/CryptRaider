@@ -29,7 +29,8 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetShouldMove(bool ShouldMove);
     
-    
+
+    void ReverseDirection();
     
 
 private:

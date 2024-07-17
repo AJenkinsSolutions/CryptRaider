@@ -31,7 +31,7 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
     AActor* ActorInZone = ConfirmActorAcceptableTag();
     
     if(ActorInZone != nullptr){
-        UE_LOG(LogTemp, Log, TEXT("locking"));
+        //UE_LOG(LogTemp, Log, TEXT("locking"));
         AttachActorToComponent(ActorInZone);
         //taking the mover co
         //Move Door
@@ -39,16 +39,17 @@ void UTriggerZoneComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
     
     }else{
-        UE_LOG(LogTemp, Log, TEXT("Relocking"));
-
+        //UE_LOG(LogTemp, Log, TEXT("Relocking"));
         Mover->SetShouldMove(false);
+        
+
     }
 
 }
 
 void UTriggerZoneComponent::AttachActorToComponent(AActor *ActorInZone)
 {
-    UE_LOG(LogTemp, Log, TEXT(" Entered to AttachActorToComponent"));
+    UE_LOG(LogTemp, Log, TEXT("Entered to AttachActorToComponent"));
     // Casting
     UPrimitiveComponent *ActorInZoneComponent = Cast<UPrimitiveComponent>(ActorInZone->GetRootComponent());
 
